@@ -1,0 +1,96 @@
+extends layout
+
+block content
+
+    .main.container.clearfix
+      .row
+        .col-md.col-md-offset-1
+          div.leftP
+            p
+            p.centered.font-weight-bold #{id}
+            p.centered.font-weight-bold.green € #{budget}
+
+        .row
+          if tasks
+            table.table.table-hover
+              tbody.flex-container
+                each task in tasks
+
+                  if task.done == false && !task.tofinishdate && !task.mainworker
+                    form(method='get')
+                      tr.flex-item.fullW#first
+                        td.tableCenter.notDone
+                            p.leftP.font-weight-bold #{task.taskname}
+                            div.inline.leftP
+                              p.leftP.font-weight-bold.white Date
+                              p.leftP.font-weight-bold.white Workers
+                            if task.tofinishdate
+                              p.leftP.font-weight-bold #{task.tofinishdate.toDateString()}
+                        td.tableCenter.notDone
+                          - var projectId = ['id', id, 'taskname', task.taskname, 'tools', task.tools, 'mainworkers', task.mainworkers, 'secworkers', task.secworkers, '_id', task._id];
+                            button.btn.btn-primary.leftP(type='submit' formaction='/editTask', name=projectId) Edit
+
+
+                  if task.mainworker && task.done == false && !task.tofinishdate
+                    form(method='get')
+                      tr.flex-item.fullW
+                        td.tableCenter.medDone
+                            p.leftP.font-weight-bold #{task.taskname}
+                            if task.tostartdate && task.tofinishdate
+                              p.leftP Start: #{task.tostartdate.toDateString()}
+                              p.leftP Finish: #{task.tofinishdate.toDateString()}
+                              div.inline.leftP
+                                p.leftP.font-weight-bold.white Date
+                                p.leftP.font-weight-bold Workers
+                        td.tableCenter.medDone
+                          - var projectId = ['id', id, 'taskname', task.taskname, 'tools', task.tools, 'mainworkers', task.mainworkers, 'secworkers', task.secworkers,'_id', task._id];
+                            button.btn.btn-primary.leftP(type='submit' formaction='/editTask', name=projectId) Edit
+                        td.tableCenter.medDone
+
+
+                  if !task.mainworker && task.done == false && task.tofinishdate
+                    form(method='get')
+                      tr.flex-item.fullW
+                        td.tableCenter.medDone
+                            p.leftP.font-weight-bold #{task.taskname}
+                            if task.tostartdate && task.tofinishdate
+                              p.leftP Start: #{task.tostartdate.toDateString()}
+                              p.leftP Finish: #{task.tofinishdate.toDateString()}
+                              div.inline.leftP
+                                p.leftP.font-weight-bold Date
+                                p.leftP.font-weight-bold.white Workers
+                        td.tableCenter.medDone
+                          - var projectId = ['id', id, 'taskname', task.taskname, 'tools', task.tools, 'mainworkers', task.mainworkers, 'secworkers', task.secworkers,'_id', task._id];
+                            button.btn.btn-primary.leftP(type='submit' formaction='/editTask', name=projectId) Edit
+                        td.tableCenter.medDone
+
+                  if task.tofinishdate && task.done == false && task.mainworker
+                    form(method='get')
+                      tr.flex-item.fullW
+                        td.tableCenter.medDone
+                            p.leftP.font-weight-bold #{task.taskname}
+                            if task.tostartdate && task.tofinishdate
+                              p.leftP Start: #{task.tostartdate.toDateString()}
+                              p.leftP Finish: #{task.tofinishdate.toDateString()}
+                                div.inline.leftP
+                                  p.leftP.font-weight-bold Date
+                                  p.leftP.font-weight-bold Workers
+                        td.tableCenter.medDone
+                          - var projectId = ['id', id, 'taskname', task.taskname, 'tools', task.tools, 'mainworkers', task.mainworkers, 'secworkers', task.secworkers,'_id', task._id];
+                            button.btn.btn-primary.leftP(type='submit' formaction='/editTask', name=projectId) Edit
+                        td.tableCenter.medDone
+                          - var projectId = ['id', id, 'task', task.taskname, 'person', task.mainworker, 'tool', task.toolused];
+                          button.btn.btn-success(type='submit' formaction='/taskid', name=projectId ) Done
+
+
+                  if task.done == true
+                    tr.flex-item.fullW#last
+                      td.tableCenter.yesDone
+                        p.font-weight-bold.leftP #{task.taskname}
+                          if task.tofinishdate
+                            p.leftP Planned: #{task.tofinishdate.toDateString()}
+
+                      td.tableCenter.yesDone
+                        p.font-weight-bold.leftP Finished:
+                          if task.dateFinished
+                            p.leftP #{task.dateFinished.toDateString()}

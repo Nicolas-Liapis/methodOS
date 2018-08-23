@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .main.container.clearfix
+    .row
+      p
+      p.centered.font-weight-bold Choose Main Project
+    if projects
+        table.table.table-hover
+          thead
+          tbody.boxContainer
+            each project in projects
+              tr.boxy
+                form(method='get')
+                    td.font-weight-bold #{project.id}
+                    td € #{project.budget}
+                    td #{project.address}
+                    td
+                      button.btn.btn-primary(type='submit' formaction='/project/id', name=project.id ) View

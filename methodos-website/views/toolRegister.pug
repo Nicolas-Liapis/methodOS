@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  .main.container
+    .row
+    if tools
+        table.table.table-hover
+          thead.thead-light
+            tr
+              th(scope='col') ID
+              th(scope='col') Name
+              th(scope='col')
+              th.noWidth
+
+          tbody
+            each tool in tools
+              tr
+                form(method='get', action='/toolRegister/id', name='toolDelete')
+                  td.font-weight-bold.tableCenter #{tool.id}
+                  td.font-weight-bold.tableCenter #{tool.toolname}
+                  td <img src = #{tool['path']} alt="image" class="thumbnail" />
+                  td.noWidth
+                    button.close(type='submit', aria-label='Close' name=tool.id)
+                      span.align-middle(aria-hidden='true') ×
+
+    p
+      .row.btn-toolbar
+        a.btn.btn-info-index.btn-lg(type='button', data-toggle='collapse', data-target='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+          | Register a Tool
+    #collapseExample.collapse
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register a Tool
+        // register form
+        form(method='POST' action='/toolRegister' enctype='multipart/form-data')
+          div.form-group
+            label(for='id') Tool ID:
+            input#id.form-control(type='text', placeholder='id' name='id')
+          div.form-group
+            label(for='toolname') Tool Name:
+            input#toolname.form-control(type='text', placeholder='Tool name' name='toolname')
+          div.form-group
+            label(for='photo') Tool Photo:
+            input#photo.form-control(type='file' name='photo')
+
+          button.btn.btn-primary.btn-block(type='submit') Register Tool

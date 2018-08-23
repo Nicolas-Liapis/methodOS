@@ -1,0 +1,310 @@
+/* Base Styles */
+
+body {
+	background: white;
+	background-size: cover;
+	padding-top: 4.5em;
+}
+
+a:hover {
+	color: rgba(49,176,213, .7);
+}
+
+
+/* Component Styles */
+
+.navbar {
+	justify-content: space-between;
+	padding: 1rem 0;
+	background: white;
+	color: #3c3939;
+	border-bottom: 1px solid #3c3939;
+
+}
+.lead {
+	margin-bottom: 2.5rem;
+}
+.main {
+	color: #3c3939;
+	min-width: 100%;
+	min-height: calc(100vh - 34px);
+}
+.foot {
+	font-size: .85rem;
+	padding: .5rem 0;
+	color: rgba(255,255,255, .6);
+}
+
+/* Modifier Styles */
+
+.nav-items .nav-link {
+	margin: 0 1rem;
+}
+.navbar-brand {
+	margin: 0;
+}
+.navbar .nav-link,
+.navbar .btn {
+	text-transform: uppercase;
+	font-size: .95rem;
+}
+.list-group {
+	color: initial;
+}
+.label {
+	font-size: .88rem;
+	vertical-align: top;
+	margin: 3px 0 0 4px;
+}
+
+/* Button Styles */
+
+.btn-primary {
+	background: #417aba;
+	border-color: #417aba;
+}
+.btn-info {
+	background-color: #31b0d5;
+	border-color: #2aabd2;
+}
+.btn-info:hover {
+	background-color: #5bc0de;
+	border-color: #5bc0de;
+}
+.btn-info-index {
+	color: white;
+	border-color: white;
+}
+.btn-info-index:hover {
+	color: #b8dee3;
+	border-color: #b8dee3;
+}
+
+.btn-light {
+	color: rgba(255,255,255, .75);
+	background: rgba(255,255,255, .12);
+}
+.btn-light:hover {
+	background: rgba(255,255,255, .2);
+}
+.active,
+.btn {
+	transition: .4s;
+}
+
+.editBtn {
+	width: 12em;
+}
+
+/* Icon Styles */
+
+.icn-logo {
+	margin: 3px 3px 0;
+	float: left;
+}
+.icn-person {
+	font-size: 50px;
+	border-radius: 50%;
+	border: solid 2px;
+	padding: .5rem;
+}
+.avatar {
+	width: 35px;
+	margin-right: 18px;
+	border: solid 2px rgba(255,255,255, .75);
+}
+.options {
+	display: none;
+}
+.list-group-item:hover .options {
+	display: block;
+}
+.options .material-icons {
+	font-size: 1.25rem;
+	cursor: pointer;
+	margin-left: 1rem;
+	color: rgba(0,0,0, .35);
+}
+.options .material-icons:hover {
+	color: initial;
+}
+
+.job {
+  margin-top: 30px;
+}
+
+/* Table Styles */
+
+thead {
+	background-color: #eceeef;
+}
+
+th {
+	text-align: center;
+	font-size: 1.1em;
+}
+
+td {
+	background-color: rgba(235, 237, 238, 0.35);
+	text-align: center;
+}
+
+.flexible {
+	display: flex;
+	flex-direction: column;
+}
+
+.thumbnail {
+		border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px; /* Some padding */
+    width: 10em;
+}
+
+.noWidth {
+	width: auto;
+}
+
+.scoreBtn {
+	width: 2.5em;
+}
+
+li {
+	list-style-type: none;
+}
+
+.notDone {
+	/* red color */
+	background: #ee3456;
+	height: 5.5em;
+}
+
+.medDone {
+	/* orange colour */
+	background: #fab847;
+	height: 10em;
+}
+
+.leftP {
+	padding-left: 1em;
+	margin-bottom: 1px;
+}
+
+.leftM {
+	margin-left: 1em;
+}
+
+.yesDone {
+	/* green color */
+	background: #79e43f;
+}
+/* App Styles */
+.backBtn {
+	color: #3c3939;
+	float: left;
+}
+
+.backBtn:hover {
+	color: #3c3939;
+	text-decoration: none;
+}
+
+#demo {
+	float: right;
+	padding-right: 1em;
+}
+
+.centered {
+	text-align: center;
+}
+
+.boxContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.boxy {
+	border: 2px solid #3c3939;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	margin: 1em;
+	width: 80%;
+	background: white;
+}
+
+.separator {
+	margin: 0 1em 0 1em;
+}
+
+.affix{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 9999;
+	margin-bottom: 1em;
+}
+
+select {
+	margin-bottom: 1em;
+	border: 2px solid #3c3939;
+	border-radius: 5px;
+	font-size: 1.1em;
+}
+
+.white {
+	color: white;
+}
+
+.green {
+	color: #79e43f;
+	border: 2px dotted #3c3939;
+	border-radius: 5px;
+	font-size: 1.2em;
+}
+
+.inline {
+	display: flex;
+	flex-direction: row;
+}
+
+/* Order tasks */
+
+ .flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.flex-item#first { order: 1; }
+.flex-item#last { order: 2; }
+
+.flex-item {
+	flex: 0 0 100%;
+}
+
+.fullW {
+	display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+	padding: 0.1em;
+}
+
+.fullW > * {
+  flex-grow: 1;
+}

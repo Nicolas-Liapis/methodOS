@@ -1,0 +1,119 @@
+doctype html(lang='en')
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(http-equiv='x-ua-compatible', content='ie=edge')
+  title methodOS | #{title}
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css', integrity='sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd', crossorigin='anonymous')
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    // load navbar.jade
+    nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+      button.navbar-toggler.hidden-md-up.pull-xs-right(type='button', data-toggle='collapse', data-target='#navbar') &#x2630;
+      #navbar.navbar-nav.collapse.navbar-toggleable-sm
+        .container
+          a.navbar-brand(href='/')
+            | methodOS
+          .nav-items.clearfix
+            if !currentUser
+              a.nav-item.nav-link(href='about') About
+              a.nav-item.nav-link(href='register') Sign Up
+            if currentUser
+
+          if currentUser
+              div
+                a.btn.btn-light.pull-md-right(href='/logout') Log out
+          else
+            a.btn.btn-info.pull-md-right(href='login') Login
+
+    // content block
+    block content
+
+    .main.container.clearfix
+
+      .row
+        .col-md.col-md-offset-1
+            p Project ID: #{id}
+            p Foreman: #{foreman}
+            p Address: #{address}
+            p Budget: € #{budget}
+
+      // register task
+      form(method='GET' action='/addTask/taskname/tools')
+        div.form-group
+          label(for='taskname') Task Name:
+          input#taskname.form-control(type='text' name='taskname')
+        div.form-group
+          label(for='tools') Tools:
+          input#tools.form-control(type='text' name='tools')
+        div.form-group
+          label(for='mainworkers') Main Worker:
+            select#mainworkers.selectMenu(name='mainworkers')
+              option(value='painter') Painter
+              option(value='plumber') Plumber
+              option(value='carpenter') Carpenter
+        div.form-group
+          label(for='secworkers') Number of Helpers:
+            select#secworkers.selectMenu(name='secworkers')
+              option(value='1') 1
+              option(value='2') 2
+              option(value='3') 3
+        div.form-group
+          label(for='days') Days:
+            select#days.selectMenu(name='days')
+              option(value='1') 1
+              option(value='2') 2
+              option(value='3') 3
+              option(value='4') 4
+              option(value='5') 5
+
+        button.btn.btn-primary(type='submit' name=id) Add Task
+
+      .row
+      if tasks
+        table.table.table-hover
+          tbody
+            each task in tasks
+              tr
+                form(method='get', action='/task', name='taskDelete')
+                  td
+                    p.font-weight-bold.tableCenter Task name:
+                    p #{task.taskname}
+                  td
+                    if !task.toolused
+                      p.font-weight-bold.tableCenter Tools:
+                      p #{task.tools}
+                    else
+                      p.font-weight-bold.tableCenter Tools:
+                      p #{task.toolused}
+                  td
+                    if !task.mainworker
+                      p.font-weight-bold.tableCenter Main Worker:
+                      p #{task.mainworkers}
+                    else
+                      p.font-weight-bold.tableCenter Main Worker:
+                      p #{task.mainworker}
+                  td
+                    p.font-weight-bold.tableCenter Helpers:
+                    p #{task.secworkers}
+                  td
+                    p.font-weight-bold.tableCenter Days:
+                    p #{task.days}
+                  td
+                    p.font-weight-bold.tableCenter Done:
+                    p #{task.done}
+                  td
+                    button.close(type='submit', aria-label='Close' name=task._id)
+                      span.align-middle(aria-hidden='true') ×
+        a.btn.btn-primary(type='button' href='/projects') Back
+
+
+    // footer
+    p.foot.text-xs-center Copyright © 2018 Nicolas Liapis
+
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

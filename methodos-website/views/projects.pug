@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  .main.container.clearfix
+    .row
+      .col-md-8.col-md-offset-2
+        h2.All Projects
+    if projects
+        table.table.table-hover
+          thead
+            tr
+              th(scope='col') ID
+              th(scope='col') Address
+              th(scope='col') Start Date
+              th(scope='col') Foreman
+              th(scope='col') Budget
+              th(scope='col') Completion
+              th.noWidth
+              th.noWidth
+          tbody
+            each project in projects
+              tr
+                form(method='get', name='projectDelete')
+                  td.font-weight-bold #{project.id}
+                  td #{project.address}
+                  td #{project.startdate}
+                  td #{project.foreman}
+                  td #{project.budget}
+                  td #{project.complete}
+                  td.noWidth
+                    button.btn.btn-primary(type='submit' formaction='/project/id', name=project.id ) View
+                  td.noWidth
+                    button.close(type='submit', formaction='/projects/id', aria-label='Close' name=project.id)
+                      span.align-middle(aria-hidden='true') ×
+
+    p
+      .row.btn-toolbar
+        a.btn.btn-info-index.btn-lg(type='button', data-toggle='collapse', data-target='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+          | Add a Project
+    #collapseExample.collapse
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register a Project
+
+        // register form
+        form(method='POST' action='/projects')
+          div.form-group
+            label(for='id') Project ID:
+            input#id.form-control(type='text', name='id')
+          div.form-group
+            label(for='address') Address:
+            input#address.form-control(type='text', name='address')
+          div.form-group
+            label(for='budget') Budget:
+            input#budget.form-control(type='text', name='budget')
+          div.form-group
+            label(for='startdate') Start date:
+            input#startdate.form-control(type='date', placeholder='start date' name='startdate')
+          div.form-group
+            label(for='foreman') Foreman:
+            input#foreman.form-control(type='text', name='foreman')
+          button.btn.btn-primary.btn-block(type='submit') Add Project

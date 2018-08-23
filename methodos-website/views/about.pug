@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-8.col-md-offset-2
+        h1.display-4.m-b-2.white About Us
+        p.white methodOS is an Agile project management tool that helps you summon the right machinery and people at the construction site exactly when they are needed. You can monitor the budget and completion date of all your projects directly though the app. The best part is that it works on any device.
+          if !currentUser
+            a.btn.btn-info-index.btn-lg.m-t-1(href='/register') Create an account

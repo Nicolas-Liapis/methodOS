@@ -1,0 +1,100 @@
+extends layout
+
+block content
+  .main.container
+    .row
+    if people
+        table.table.table-hover
+          thead
+            tr
+              th(scope='col') ID
+              th(scope='col') Firstname
+              th(scope='col') Surname
+              th(scope='col') Phone
+              th(scope='col') Address
+              th(scope='col') Primary Job
+              th(scope='col') Secondary Job
+              th(scope='col') Day Rate
+              th(scope='col') Nationality
+              th(scope='col') Score
+              th.noWidth
+              th.noWidth
+          tbody
+            each person in people
+              tr
+                form(method='get')
+                  td #{person.id}
+                  td.font-weight-bold #{person.firstname}
+                  td.font-weight-bold #{person.lastname}
+                  td #{person.phone}
+                  td #{person.address}
+                  td #{person.jobprimary}
+                  td #{person.jobsecondary}
+                  td #{person.rate}
+                  td #{person.nationality}
+                  td #{person.score}
+                  td.noWidth
+                    button.btn.btn-sm.btn-success.scoreBtn(type='submit' formaction='/scoreup/id' name=person.id)
+                      | +
+                    button.btn.btn-sm.btn-danger.scoreBtn(type='submit' formaction='/scoredown/id' name=person.id)
+                      | -
+                  td.noWidth
+                    button.close(type='submit', formaction='/personRegister/id', aria-label='Close' name=person.id)
+                      span.align-middle(aria-hidden='true') ×
+
+    p
+      .row.btn-toolbar
+        a.btn.btn-info-index.btn-lg(type='button', data-toggle='collapse', data-target='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+          | Register a Person
+    #collapseExample.collapse
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register a Person
+
+        // register form
+        form(method='POST' action='/personRegister')
+          div.form-group
+            label(for='id') Employee ID:
+            input#id.form-control(type='text', placeholder='id' name='id')
+          div.form-group
+            label(for='firstname') First Name:
+            input#firstname.form-control(type='text', placeholder='First name' name='firstname')
+          div.form-group
+            label(for='lastname') Last Name:
+            input#lastname.form-control(type='text', placeholder='Last Name' name='lastname')
+          div.form-group
+            label(for='phone') Phone number:
+            input#phone.form-control(type='tel', placeholder='phone number' name='phone')
+          div.form-group
+            label(for='email') Email:
+            input#email.form-control(type='email', placeholder='name@email.com' name='email')
+          div.form-group
+            label(for='address') Address:
+            input#address.form-control(type='text', name='address')
+          div.form-group
+            label(for='jobprimary') Job-primary:
+            input#jobprimary.form-control(type='text', placeholder='Primary Job' name='jobprimary')
+          div.form-group
+            label(for='jobsecondary') Job-secondary:
+            input#jobsecondary.form-control(type='text', placeholder='Secondary Job' name='jobsecondary')
+          div.form-group
+            label(for='jobsecondary1') Job-secondary:
+            input#jobsecondary1.form-control(type='text', placeholder='Secondary Job' name='jobsecondary1')
+          div.form-group
+            label(for='jobsecondary2') Job-secondary:
+            input#jobsecondary2.form-control(type='text', placeholder='Secondary Job' name='jobsecondary2')
+          div.form-group
+            label(for='rate') Day Rate:
+            input#rate.form-control(type='number' name='rate')
+          div.form-group
+            label(for='afm') ΑΦΜ:
+            input#afm.form-control(type='number' name='afm')
+          div.form-group
+            label(for='nationality') Nationality:
+            input#nationality.form-control(type='text', placeholder='nationality' name='nationality')
+          div.form-group
+            label(for='startdate') Start date:
+            input#startdate.form-control(type='date', placeholder='start date' name='startdate')
+          div.form-group
+            label(for='score') Score:
+            input#score.form-control(type='number', placeholder='1 - 5' name='score')
+          button.btn.btn-primary.btn-block(type='submit') Register Person

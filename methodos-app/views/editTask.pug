@@ -1,0 +1,61 @@
+extends layout
+
+block content
+
+    .main.container.clearfix
+      .row
+      br
+      p.centered.font-weight-bold  #{title}
+      br
+      if workingname
+        #{workingname}
+      .row.btn-toolbar
+        a.btn.btn-primary.editBtn(type='button', data-toggle='collapse', data-target='#collapse1', aria-expanded='false', aria-controls='collapseExample')
+          | Select People & Tools
+        p
+      #collapse1.collapse
+        .col-md.col-md-offset-1
+        form(method='get')
+          div.leftP
+            p
+            p.font-weight-bold Tool:
+            select.selectTool(data-style='btn-info', name='selectTool')
+              optgroup(label='Tools Table')
+                option(name='', value='0') #{tools}
+                each t in toolList
+                  option(name='table1', value= t.id ) #{t.toolname} - #{t.id}
+            p.font-weight-bold Main Worker:
+            select.selectTool(data-style='btn-info', name='selectPerson')
+              optgroup(label='Workers Table')
+                option(name='', value='0') #{mainworkers}
+                each p in persons
+                  option(name='table2', value= p.id) #{p.firstname} #{p.lastname} (#{p.score}) - #{p.jobprimary}
+            -var pId = ['tid', tid, 'id', id]
+            br
+            button.btn.btn-primary(type='submit', formaction='/editPeople', name=pId) Save
+            br
+            br
+            p.font-weight-bold Helpers:
+              p #{secworkers}
+      .row.btn-toolbar
+        a.btn.btn-primary.editBtn(type='button', data-toggle='collapse', data-target='#collapse2', aria-expanded='false', aria-controls='collapseExample')
+          | Select Date
+      #collapse2.collapse
+        .col-md-6.col-md-offset-3
+        p
+          form(method='get')
+            div.form-group
+              label.font-weight-bold(for='tostartdate') Start date:
+              input#tostartdate.form-control(type='date', name='tostartdate')
+            div.form-group
+              label.font-weight-bold(for='tofinishdate') Finish date:
+              input#tofinishdate.form-control(type='date', name='tofinishdate')
+              - var projectId = ['id', id, 'taskname', title];
+            button.btn.btn-primary.btn-block(type='submit', formaction='/editTaskDate', name=projectId) Save Date
+      .row
+        br
+        br
+        br
+
+        form(method='get' )
+          button.btn.btn-primary.btn-block(type='submit', formaction='/project/id' name=id) Back
